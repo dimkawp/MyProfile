@@ -1,0 +1,57 @@
+/* jssor slider bullet navigator skin 01 css */
+/*
+.jssorb01 div           (normal)
+.jssorb01 div:hover     (normal mouseover)
+.jssorb01 .av           (active)
+.jssorb01 .av:hover     (active mouseover)
+.jssorb01 .dn           (mousedown)
+*/
+.jssorb01 {
+    position: absolute;
+}
+.jssorb01 div, .jssorb01 div:hover, .jssorb01 .av {
+    position: absolute;
+    /* size of bullet elment */
+    width: 12px;
+    height: 12px;
+    filter: alpha(opacity=70);
+    opacity: .7;
+    overflow: hidden;
+    cursor: pointer;
+    border: #000 1px solid;
+}
+.jssorb01 div { background-color: gray; }
+.jssorb01 div:hover, .jssorb01 .av:hover { background-color: #d3d3d3; }
+.jssorb01 .av { background-color: #fff; }
+.jssorb01 .dn, .jssorb01 .dn:hover { background-color: #555555; }
+
+/* jssor slider arrow navigator skin 01 css */
+/*
+.jssora01l                  (normal)
+.jssora01r                  (normal)
+.jssora01l:hover            (normal mouseover)
+.jssora01r:hover            (normal mouseover)
+.jssora01l.jssora01ldn      (mousedown)
+.jssora01r.jssora01rdn      (mousedown)
+.jssora01l.jssora01lds      (disabled)
+.jssora01r.jssora01rds      (disabled)
+*/
+.jssora01l, .jssora01r {
+    display: block;
+    position: absolute;
+    /* size of arrow element */
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    background: url('assets/img/main-slider/s-buttons.png') no-repeat;
+    overflow: hidden;
+}
+.jssora01l { background-position: -8px -38px; }
+.jssora01r { background-position: -68px -38px; }
+
+.jssora01l:hover { background-position: -128px -38px; }
+.jssora01r:hover { background-position: -188px -38px; }
+.jssora01l.jssora01ldn { background-position: -8px -38px; }
+.jssora01r.jssora01rdn { background-position: -68px -38px; }
+.jssora01l.jssora01lds { background-position: -8px -38px; opacity: .3; pointer-events: none; }
+.jssora01r.jssora01rds { background-position: -68px -38px; opacity: .3; pointer-events: none; }

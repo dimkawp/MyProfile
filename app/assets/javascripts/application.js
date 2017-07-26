@@ -12,4 +12,10 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require main-slider
+//= require jssor.slider-25.0.7.min
+//= require presentation-1
+//= require presentation-2
+//= require animate-box
+//= require semantic-ui
 //= require_tree .

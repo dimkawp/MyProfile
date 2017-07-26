@@ -12,4 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require animate
+
  */
+@import "main-slider.css";
+@import "animate.css";
