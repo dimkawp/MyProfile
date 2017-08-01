@@ -133,14 +133,56 @@
     Block with my contacts
   </div>
   <div class="ui bottom attached tab segment" data-tab="third">
-    My blog
-    <div class="ui category search">
-      <div class="ui icon input">
-        <input class="prompt" type="text" placeholder="Search animals...">
-        <i class="search icon"></i>
+
+    <div class="ui grid">
+      <div class="three column row">
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column">
+
+          <div class="ui center aligned category search">
+            <div class="ui icon input">
+              <input class="prompt" type="text" placeholder="Search animals...">
+              <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+          </div>
+
+        </div>
       </div>
-      <div class="results"></div>
     </div>
+
+
+
+    <div class="ui grid">
+      <div class="three column row">
+        <% @articles.each do |article| %>
+            <div class="column">
+
+              <div class="ui card">
+                <div class="content">
+                  <div class="header"><a href="/posts/1"><%= article.title %></a></div>
+                  <div class="meta">
+                    <span class="right floated time">2 days ago</span>
+                    <span class="category"><%= article.category %></span>
+                  </div>
+                  <div class="description" style="overflow: hidden; text-overflow: clip;white-space: nowrap;">
+                    <%= article.description %>
+                  </div>
+                </div>
+                <div class="extra content">
+                  <div class="right floated author">
+                    <img class="ui avatar image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/User.svg/1024px-User.svg.png">
+                    <%= article.user.username %>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
   </div>
 
 </div>
@@ -337,6 +379,18 @@
   <div class="header">API</div>
   <div class="content">
     <p>GEM SPREE</p>
+  </div>
+  <div class="actions">
+    <div class="ui approve button">Approve</div>
+    <div class="ui button">Neutral</div>
+    <div class="ui cancel button">Cancel</div>
+  </div>
+</div>
+
+<div class="ui modal article" id="article-preview">
+  <div class="header">Article</div>
+  <div class="content">
+    <p>Article</p>
   </div>
   <div class="actions">
     <div class="ui approve button">Approve</div>

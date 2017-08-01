@@ -16,5 +16,8 @@ $(function ()
   $('#api-preview').click(function(){
   $('.modal.api').modal('show');
   });
+  $('#article-preview').click(function(){
+      $('.modal.article').modal('show');
+  });
 
 });
