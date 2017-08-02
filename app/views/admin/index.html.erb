@@ -1,14 +1,18 @@
 <% if current_user.role == 'admin' %>
 
+
+
     <div class="ui center aligned grid" style="padding: 25px;">
       <h3>Admin working environment</h3>
     </div>
 
+    <div class="ui segment center aligned grid">
+        <p class="ui error"><%= flash[:error] %></p>
+    </div>
 
     <div class="ui segment center aligned grid">
       <h4>All Users</h4>
     </div>
-
 
     <div class="ui segment center aligned grid">
         <table class="ui compact celled definition table">
@@ -36,7 +40,11 @@
             <td> <%= user.role %> </td>
             <td>No</td>
             <td>Edit</td>
-            <td>Delete</td>
+            <td>
+              <a class="btn btn-sm" href="delete/user/<%=user.id%>" data-method="delete">
+                <i class="pg-trash"></i><span class="bold">Delete</span>
+              </a>
+            </td>
           </tr>
 
           <% end %>
@@ -48,7 +56,7 @@
             <th></th>
             <th></th>
             <th colspan="4">
-              <div class="ui right floated small primary labeled icon button">
+              <div class="ui right floated small primary labeled icon button" id="new-user">
                 <i class="user icon"></i> Add User
               </div>
               <div class="ui small button">
@@ -90,7 +98,11 @@
           <td><%= work.image %></td>
           <td><%= work.url %></td>
           <td>Edit</td>
-          <td>Delete</td>
+          <td>
+            <a class="btn btn-sm" href="delete/work/<%=work.id%>" data-method="delete">
+              <i class="pg-trash"></i><span class="bold">Delete</span>
+            </a>
+          </td>
         </tr>
 
         <% end %>
@@ -101,7 +113,7 @@
           <th></th>
           <th></th>
           <th colspan="4">
-            <div class="ui right floated small primary labeled icon button">
+            <div class="ui right floated small primary labeled icon button" id="new-work">
               <i class="database icon"></i> New Work
             </div>
 
@@ -160,7 +172,11 @@
           </td>
           <td><%= article.description %></td>
           <td>Edit</td>
-          <td>delete</td>
+          <td>
+            <a class="btn btn-sm" href="delete/article/<%=article.id%>" data-method="delete">
+              <i class="pg-trash"></i><span class="bold">Delete</span>
+            </a>
+          </td>
 
         </tr>
         <% end %>
@@ -172,7 +188,7 @@
           <th></th>
           <th></th>
           <th colspan="4">
-            <div class="ui right floated small primary labeled icon button">
+            <div class="ui right floated small primary labeled icon button" id="new-article">
               <i class="database icon"></i> New Post
             </div>
 
@@ -195,6 +211,121 @@
         <!--</tr>-->
         </tfoot>
       </table>
+    </div>
+
+    <div class="ui modal new_user" id="new-user">
+      <div class="header">Create New User</div>
+      <div class="content">
+        <form action="/users" method="post" class="ui form">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+          <div class="two fields">
+            <div class="field">
+              <label>First Name</label>
+              <input type="text" name="user[username]" placeholder="Name">
+            </div>
+            <div class="field">
+              <label>Email</label>
+              <input type="text" name="user[email]" placeholder="email">
+            </div>
+          </div>
+          <div class="field">
+            <select class="ui fluid search dropdown" name="user[role]" placeholder="role">
+              <option value="1">Tester</option>
+              <option value="2">User</option>
+              <option value="3">Admin</option>
+            </select>
+          </div>
+          <button class="ui button" type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="actions">
+        <div class="ui approve button">Approve</div>
+        <div class="ui button">Neutral</div>
+        <div class="ui cancel button">Cancel</div>
+      </div>
+    </div>
+
+    <div class="ui modal new_work" id="new-work">
+      <div class="header">Create New Work Page</div>
+      <div class="content">
+        <form action="/works" method="post" class="ui form">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+          <div class="two fields">
+            <div class="field">
+              <label>Title</label>
+              <input type="text" name="work[title]" placeholder="Title">
+            </div>
+          </div>
+          <div class="two fields">
+            <div class="field">
+              <label>Title</label>
+              <input type="text" name="work[image]" placeholder="Title">
+            </div>
+          </div>
+          <div class="two fields">
+            <div class="field">
+              <label>Title</label>
+              <input type="text" name="work[url]" placeholder="Title">
+            </div>
+          </div>
+          <div class="field">
+            <label>Description</label>
+            <textarea name="work[description]" rows="2"></textarea>
+          </div>
+          <div class="field">
+            <select class="ui fluid search dropdown" name="work[user_id]" placeholder="who work">
+              <option value="1">dimkawp</option>
+              <option value="2">User2</option>
+              <option value="3">User3</option>
+            </select>
+          </div>
+          <button class="ui button" type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="actions">
+        <div class="ui approve button">Approve</div>
+        <div class="ui button">Neutral</div>
+        <div class="ui cancel button">Cancel</div>
+      </div>
+    </div>
+
+    <div class="ui modal new_article" id="new-article">
+      <div class="header">Create New Articles Page</div>
+      <div class="content">
+        <form action="/articles" method="post" class="ui form">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+          <div class="two fields">
+            <div class="field">
+              <label>Title</label>
+              <input type="text" name="article[title]" placeholder="Title">
+            </div>
+          </div>
+          <div class="field">
+            <label>Description</label>
+            <textarea name="article[description]" rows="4"></textarea>
+          </div>
+          <div class="field">
+            <select class="ui fluid search dropdown" name="article[user_id]" placeholder="who work">
+              <option value="1">dimkawp</option>
+              <option value="2">User2</option>
+              <option value="3">User3</option>
+            </select>
+          </div>
+          <div class="field">
+            <select class="ui fluid search dropdown" name="article[category]" placeholder="who work">
+              <option value="1">Funny</option>
+              <option value="2">Ruby</option>
+              <option value="3">Game</option>
+            </select>
+          </div>
+          <button class="ui button" type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="actions">
+        <div class="ui approve button">Approve</div>
+        <div class="ui button">Neutral</div>
+        <div class="ui cancel button">Cancel</div>
+      </div>
     </div>
 
     <% else %>

@@ -19,5 +19,14 @@ $(function ()
   $('#article-preview').click(function(){
       $('.modal.article').modal('show');
   });
+  $('#new-user').click(function(){
+      $('.modal.new_user').modal('show');
+  });
+  $('#new-work').click(function(){
+      $('.modal.new_work').modal('show');
+  });
+  $('#new-article').click(function(){
+      $('.modal.new_article').modal('show');
+  });
 
 });
